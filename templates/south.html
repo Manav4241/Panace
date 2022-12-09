@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Prefencer</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />    
+	<link href="{{ url_for('static', filename='css/templatemo-style.css') }}" rel="stylesheet" />
+</head>
+<body> 
+
+	<div class="container">
+		<div class="placeholder">
+			<div class="parallax-window" data-parallax="scroll" data-image-src="{{ url_for('static', filename='img/simple-house-01.jpg') }}">
+				<div class="tm-header">
+					<div class="row tm-header-inner">
+						<div class="col-md-6 col-12">
+							<img src="{{ url_for('static', filename='img/simple-house-logo.png') }}" alt="Logo" class="tm-site-logo" /> 
+							<div class="tm-site-text-box">
+								<h1 class="tm-site-title">Prefencer</h1>
+								
+							</div>
+						</div>
+						<nav class="col-md-6 col-12 tm-nav">
+							<ul class="tm-nav-ul">
+								<li class="tm-nav-li"><a href="food" class="tm-nav-link active">Home</a></li>
+								<li class="tm-nav-li"><a href="about.html" class="tm-nav-link">About</a></li>
+								<li class="tm-nav-li"><a href="contact.html" class="tm-nav-link">Contact</a></li>
+							</ul>
+						</nav>	
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<main>
+			<header class="row tm-welcome-section">
+				<h2 class="col-12 text-center tm-section-title">Welcome  To Prefencer</h2>
+				<p class="col-12 text-center">Prefencer is your go to website to track on the nutrition values of the food you consume. Just select the food items you want to eat and you are good to go</p>
+			</header>
+			<div class="tm-paging-links">
+				<nav>
+					<ul>
+						<li class="tm-paging-item"><a href="food" class="tm-paging-link active">NorthIndia</a></li>
+						<li class="tm-paging-item"><a href="south.html" class="tm-paging-link">SouthIndia</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="row tm-gallery">
+				<div id="tm-gallery-page-southindia" class="tm-gallery-page">
+				<a href="/first/SpicyCrunchyMasalaIdli">
+					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+						<figure>
+							<img src="https://www.idfreshfood.com/wp-content/uploads/2020/10/IMG_20200924_181452-01.jpeg" alt="Image" class="img-fluid tm-gallery-img"/>
+							<figcaption>
+								<h4 class="tm-gallery-title">SpicyCrunchyMasalaIdli</h4>
+								<p class="tm-gallery-description">made from left over idlis flavored with bell peppers, mint leaves and coriander.</p>
+								<p class="tm-gallery-price">Rs-150</p>
+							</figcaption>
+						</figure>
+					</article>
+				</a>
+				<a href="/first/CauliflowerLeavesChutney ">
+					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+						<figure>
+							<img src="https://www.archanaskitchen.com/images/archanaskitchen/1-Author/anu.mallajosyula-gmail.com/Cauliflower_leaf_chutney_recipe_edited_1.jpg" alt="Image" class="img-fluid tm-gallery-img"/>
+							<figcaption>
+								<h4 class="tm-gallery-title">CauliflowerLeavesChutney</h4>
+								<p class="tm-gallery-description">interesting recipe that is made with the thick veined cauliflower leaves that are attached to bottom of the cauliflower</p>
+								<p class="tm-gallery-price">Rs-125</p>
+							</figcaption>
+						</figure>
+					</article>
+				</a>
+				</div>
+			</div>
+			<div class="tm-section tm-container-inner">
+				<div class="row">
+					<div class="col-md-6">
+						<figure class="tm-description-figure">
+							<img src="{{ url_for('static', filename='img/img-01.jpg') }}" alt="Image" class="img-fluid" />
+						</figure>
+					</div>
+					<div class="col-md-6">
+						<div class="tm-description-box"> 
+							<h4 class="tm-gallery-title">Preferncing Food</h4>
+							<p class="tm-mb-45">Food preferences are a primary determinant of dietary intake and behaviors, and they persist from early childhood into later life. As such, establishing preferences for healthy foods from a young age is a promising approach to improving diet quality, a leading contributor to cardiometabolic health.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<footer class="tm-footer text-center">
+			<p>Copyright &copy; 2022 Team 31
+            
+            | Design:Team 31</p>
+		</footer>
+	</div>
+</body>
+</html>

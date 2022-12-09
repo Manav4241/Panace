@@ -1,0 +1,27 @@
+# x=data2.loc[data2['TranslatedRecipeName']==post_slug]
+    # a=list(x.Ingridients)
+    # b=[]
+    # f=''
+    # for i in a[0]:
+    #      if(i!=','):
+    #           f+=i
+    #      else:
+    #           b.append(f)
+    #           f=''
+
+    # ans=[]
+    # for i in b:
+    #     y=data.loc[data['Ingridient']==i]
+    #     x=[list(y.Ingridient),list(y.Calories),list(y.Cholesterol),list(y.Sodium),list(y.Fat),list(y.Sugar),list(y.Protein),list(y.vm)]
+    #     print(x)
+    #     s=[]
+    #     for j in x:
+    #        s.append(j[0])
+    #     ans.append(s)
+    # ingriedent="1 chicken"
+    # response_API = requests.get('https://api.edamam.com/api/nutrition-data?app_id=9fcaeeea&app_key=842290d81d5c6752f51a346f60bfe550&nutrition-type=cooking&ingr=1%20chicken')
+    # data = response_API.text
+    # parse_json = json.loads(data)
+    # active_case = parse_json
+    # print(active_case["totalNutrients"])
+    # return render_template('sample.html',param=post_slug,anss=post.ingridients)

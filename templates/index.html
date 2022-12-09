@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Prefencer</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />    
+	<link href="{{ url_for('static', filename='css/templatemo-style.css') }}" rel="stylesheet" />
+</head>
+<body> 
+
+	<div class="container">
+		<div class="placeholder">
+			<div class="parallax-window" data-parallax="scroll" data-image-src="{{ url_for('static', filename='img/simple-house-01.jpg') }}">
+				<div class="tm-header">
+					<div class="row tm-header-inner">
+						<div class="col-md-6 col-12">
+							<img src="{{ url_for('static', filename='img/simple-house-logo.png') }}" alt="Logo" class="tm-site-logo" /> 
+							<div class="tm-site-text-box">
+								<h1 class="tm-site-title">Prefencer</h1>
+								
+							</div>
+						</div>
+						<nav class="col-md-6 col-12 tm-nav">
+							<ul class="tm-nav-ul">
+								<li class="tm-nav-li"><a href="food" class="tm-nav-link active">Home</a></li>
+								<li class="tm-nav-li"><a href="about.html" class="tm-nav-link">About</a></li>
+								 <li class="tm-nav-li"><a href="contact.html" class="tm-nav-link">Contact</a></li>
+								<li class="tm-nav-li"><a href="logout" class="tm-nav-link">Logout</a></li>
+							</ul>
+						</nav>	
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<main>
+			<header class="row tm-welcome-section">
+				<h2 class="col-12 text-center tm-section-title">Welcome  To Prefencer</h2>
+				<p class="col-12 text-center">Prefencer is your go to website to track on the nutrition values of the food you consume. Just select the food items you want to eat and you are good to go</p>
+			</header>
+			<div class="tm-paging-links">
+				<nav>
+					<ul>
+						<li class="tm-paging-item"><a href="food" class="tm-paging-link active">NorthIndia</a></li>
+						<li class="tm-paging-item"><a href="south.html" class="tm-paging-link">SouthIndia</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="row tm-gallery">
+				<div id="tm-gallery-page-northindia" class="tm-gallery-page">
+				{% set count = 1 %}
+			     {% for user in data %}
+			             <a href="first/{{user.name}}"><article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+							
+				              <figure>
+								{% if count ==3 %}
+					            <img src="{{ url_for('static', filename='img/gallery/02.jpg') }}" alt="Image" class="img-fluid tm-gallery-img" />
+								{% endif%}
+								{% if count ==2 %}
+					            <img src="{{ url_for('static', filename='img/gallery/01.jpg') }}" alt="Image" class="img-fluid tm-gallery-img" />
+								{% endif%}
+								{% set count = count+1 %}
+					            <figcaption>
+						        <h4 class="tm-gallery-title">{{user.name}}</h4>
+						        <p class="tm-gallery-description">{{user.description}}</p>
+					            </figcaption>
+				              </figure>
+			                </article>
+							
+		                   </a>
+			
+
+			    {% endfor %}
+	            </div>
+             </div>
+			<!--<div class="row tm-gallery">
+				<div id="tm-gallery-page-northindia" class="tm-gallery-page">
+					<a href="first/MasalaKarela"><article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+						<figure>
+							<img src="{{ url_for('static', filename='img/gallery/01.jpg') }}" alt="Image" class="img-fluid tm-gallery-img" />
+							<figcaption>
+								<h4 class="tm-gallery-title">Masala Karela</h4>
+								<p class="tm-gallery-description">More commonly known as Karela sabzi in India, is a semi-dry side dish where chopped bitter gourd is cooked with ground spices</p>
+								<p class="tm-gallery-price">Rs-120</p>
+								<p></p>
+							</figcaption>
+						</figure>
+					</article>
+				</a>
+				<a href="first/SpicyTomatoRice">
+					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+						
+						<figure>
+							<img src="{{ url_for('static', filename='img/gallery/02.jpg') }}" alt="Image" class="img-fluid tm-gallery-img" />
+							<figcaption>
+								<h4 class="tm-gallery-title">Tomato Rice</h4>
+								<p class="tm-gallery-description">simple Indian meal where rice is cooked with lots of tomatoes, fresh herbs and ground spices </p>
+								<p class="tm-gallery-price">Rs-100</p>
+							</figcaption>
+						</figure>
+					</article>
+				</a>
+				<a href="first/RagiSemiyaUpma">
+					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+						<figure>
+							<img src="{{ url_for('static', filename='img/gallery/03.jpg') }}" alt="Image" class="img-fluid tm-gallery-img" />
+							<figcaption>
+								<h4 class="tm-gallery-title">Ragi semiya Upma</h4>
+								<p class="tm-gallery-description"> simple North Indian Breakfast made with wheat vermicelli, tempering spices, nuts and herbs </p>
+								<p class="tm-gallery-price">Rs-85</p>
+							</figcaption>
+						</figure>
+					</article>
+				</a>
+				<a href="first/GonguraChickenCurry">
+					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+						<figure>
+							<img src="{{ url_for('static', filename='img/gallery/04.jpg') }}" alt="Image" class="img-fluid tm-gallery-img" />
+							<figcaption>
+								<h4 class="tm-gallery-title">Gongura Chicken</h4>
+								<p class="tm-gallery-description">popular bhojpuri style dish where chicken is cooked in with roselle leaves, spices and herbs</p>
+								<p class="tm-gallery-price">Rs-120</p>
+							</figcaption>
+						</figure>
+					</article>
+				<a>
+					<a href="first/AndhraStyleAlamPachadi">
+					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+						<figure>
+							<img src="{{ url_for('static', filename='img/gallery/05.jpg') }}" alt="Image" class="img-fluid tm-gallery-img" />
+							<figcaption>
+								<h4 class="tm-gallery-title">Allam Pachadi</h4>
+								<p class="tm-gallery-description"> ginger pickle made with fresh ginger, spices, jaggery and tamarind.</p>
+								<p class="tm-gallery-price">RS-80.25</p>
+							</figcaption>
+						</figure>
+					</article>
+				</a>
+				<a href="first/PudinaKharaPongal">
+					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+						<figure>
+							<img src="{{ url_for('static', filename='img/gallery/06.jpg') }}" alt="Image" class="img-fluid tm-gallery-img" />
+							<figcaption>
+								<h4 class="tm-gallery-title">Pudina Pongal</h4>
+								<p class="tm-gallery-description">delicious savoury rice and lentil dish popular as a breakfast item</p>
+								<p class="tm-gallery-price">Rs-20</p>
+							</figcaption>
+						</figure>
+					</article>
+				</a>
+				<a href="first/UdupiStyleAshGourdCoconutCurry">
+					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+						<figure>
+							<img src="{{ url_for('static', filename='img/gallery/07.jpg') }}" alt="Image" class="img-fluid tm-gallery-img" />
+							<figcaption>
+								<h4 class="tm-gallery-title">Ash Gourd Cocnut curry</h4>
+								<p class="tm-gallery-description">A mexican wrap made with tortillas and stuffed with some flavourful black beans and spinach </p>
+								<p class="tm-gallery-price">Rs-94</p>
+							</figcaption>
+						</figure>
+					</article>
+				</a>
+				<a href="first/MexicanStyleBlackBeanBurrito">
+					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+						<figure>
+							<img src="{{ url_for('static', filename='img/gallery/08.jpg') }}" alt="Image" class="img-fluid tm-gallery-img" />
+							<figcaption>
+								<h4 class="tm-gallery-title">Black Bean Buritto</h4>
+								<p class="tm-gallery-description">A mexican wrap made with tortillas and stuffed with some flavourful black beans and spinach</p>
+								<p class="tm-gallery-price">Rs-115</p>
+							</figcaption>
+						</figure>
+					</article>
+				</a>
+				</div> -->
+				<!--<div id="tm-gallery-page-southindia" class="tm-gallery-page hidden">
+					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+						<figure>
+							<img src="img/gallery/08.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+							<figcaption>
+								<h4 class="tm-gallery-title">Noodle One</h4>
+								<p class="tm-gallery-description">Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+								<p class="tm-gallery-price">$12.50</p>
+							</figcaption>
+						</figure>
+					</article>
+					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+						<figure>
+							<img src="img/gallery/07.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+							<figcaption>
+								<h4 class="tm-gallery-title">Noodle Second</h4>
+								<p class="tm-gallery-description">Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+								<p class="tm-gallery-price">$15.50</p>
+							</figcaption>
+						</figure>
+					</article>
+					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+						<figure>
+							<img src="img/gallery/06.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+							<figcaption>
+								<h4 class="tm-gallery-title">Third Soft Noodle</h4>
+								<p class="tm-gallery-description">Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+								<p class="tm-gallery-price">$20.50</p>
+							</figcaption>
+						</figure>
+					</article>
+					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+						<figure>
+							<img src="img/gallery/05.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+							<figcaption>
+								<h4 class="tm-gallery-title">Aliquam sagittis</h4>
+								<p class="tm-gallery-description">Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+								<p class="tm-gallery-price">$30.25</p>
+							</figcaption>
+						</figure>
+					</article>
+					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+						<figure>
+							<img src="img/gallery/04.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+							<figcaption>
+								<h4 class="tm-gallery-title">Maecenas eget justo</h4>
+								<p class="tm-gallery-description">Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+								<p class="tm-gallery-price">$35.50</p>
+							</figcaption>
+						</figure>
+					</article>
+					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+						<figure>
+							<img src="img/gallery/03.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+							<figcaption>
+								<h4 class="tm-gallery-title">Quisque et felis eros</h4>
+								<p class="tm-gallery-description">Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+								<p class="tm-gallery-price">$40.50</p>
+							</figcaption>
+						</figure>
+					</article>
+
+				</div>-->
+			<!-- gallery page 3 --> 
+			</div>
+			<div class="tm-section tm-container-inner">
+				<div class="row">
+					<div class="col-md-6">
+						<figure class="tm-description-figure">
+							<img src="{{ url_for('static', filename='img/img-01.jpg') }}" alt="Image" class="img-fluid" />
+						</figure>
+					</div>
+					<div class="col-md-6">
+						<div class="tm-description-box"> 
+							<h4 class="tm-gallery-title">Preferncing Food</h4>
+							<p class="tm-mb-45">Food preferences are a primary determinant of dietary intake and behaviors, and they persist from early childhood into later life. As such, establishing preferences for healthy foods from a young age is a promising approach to improving diet quality, a leading contributor to cardiometabolic health.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+	<!--<script src="js/jquery.min.js"></script>
+	<script src="js/parallax.min.js"></script>-->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function(){
+			// Handle click on paging links
+			$('.tm-paging-link').click(function(e){
+				e.preventDefault();
+				
+				var page = $(this).text().toLowerCase();
+				console.log(page);
+				$('.tm-gallery-page').addClass('hidden');
+				$('#tm-gallery-page-' + page).removeClass('hidden');
+				$('.tm-paging-link').removeClass('active');
+				$(this).addClass("active");
+			});
+		});
+	</script>
+</body>
+</html>
