@@ -6,6 +6,8 @@ from datetime import datetime
 import pandas as pd
 from flask_mysqldb import MySQL,MySQLdb
 import bcrypt
+import os
+UPLOAD_FOLDER = 'static/uploads/'
 # data=pd.read_csv('panace_ingridients.csv')
 # data2=pd.read_csv('panace_fooditems.csv')
 app = Flask(__name__)
@@ -62,7 +64,7 @@ def register():
         
         mysql.connection.commit()
         curr=mysql.connection.cursor()
-        curr.execute("INSERT INTO dashes (email,items) VALUES (%s,%s)",(email,a,))
+        curr.execute("INSERT INTO dashes (email,item) VALUES (%s,%s)",(email,a))
         mysql.connection.commit()
         session['name'] = request.form['name']
         session['email'] = request.form['email']
@@ -207,8 +209,142 @@ def store():
                 count+=1
         return render_template('items.html',energy=energy,protein=protein,cholestrol=cholestrol,ca=ca,mg=mg,k=k,iron=iron,zinc=zinc)
 
+@app.route("/deep",methods=["GET", "POST"])
+def sto():
+     if request.method == 'POST':
+        from tensorflow.keras.utils import load_img
+        from tensorflow.keras.utils import img_to_array
+        import numpy as np
+        from keras.models import load_model
+        dish=request.files['file']
+
+        model=load_model('./BC.h5',compile=False)
+        lab={0: 'CauliflowerLeavesChutney', 1: 'GonguraChickenCurry', 2: 'MasalaKarela'}
+        def processed_img(img_path):
+                img=load_img(img_path,target_size=(224,224,3))
+                img=img_to_array(img)
+                img=img/255
+                img=np.expand_dims(img,[0])
+                answer=model.predict(img)
+                y_class=answer.argmax(axis=-1)
+                print(y_class)
+                y=" ".join(str(x) for x in y_class)
+                y=int(y)
+                res=lab[y]
+                print(res)
+        save_image_path='./upload_images'+dish
+        path = os.path.join(app.config['UPLOAD_FOLDER'], dish.filename)
+        dish.save(path)
+        result=url_for('static', filename='uploads/' + dish.filename)
+        x=processed_img(result)
+        print(x)
+        dish=lab[x]
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        sample=Dashes.query.filter_by(email=session['email']).first()
+        a=sample.item
+        print(a)
+        a+=','
+        a+=dish
+        sample.item=a
+        db.session.commit()
+        samplee=[]
+        s="gowathm"
+        f=""
+        for i in a:
+            if(i==','):
+                if(f!=s):
+                    samplee.append(f)
+                f=""
+            else:
+                f+=i
+        
+        energy=0
+        protein=0
+        cholestrol=0
+        ca=0
+        mg=0
+        k=0
+        iron=0
+        zinc=0
+        print(samplee)
+        for i in samplee:
+             post = Dishes.query.filter_by(name=i).first()
+             ing=post.ingridients
+             l2=[]
+             d={}
+             b=list(ing.split(","))
+             for b1 in b:
+                b1=b1.replace(" ",'%20')
+                #print(b1)
+                response_API = requests.get('https://api.edamam.com/api/nutrition-data?app_id=9fcaeeea&app_key=842290d81d5c6752f51a346f60bfe550&nutrition-type=cooking&ingr='+b1)
+                data = response_API.text
+                parse_json = json.loads(data)
+                active_case = parse_json
+                #print(active_case["totalNutrientsKCal"])
+                l=[]
+                l1=[]
+                l.append(list(active_case["totalNutrients"].values()))
+                l1.append(active_case["totalNutrients"].keys())
+                #print(l)
+                for i in l[0]:
+                    if i['label'] not in list(d.keys()):
+                        d[i['label']]=['a',0,0]
+                for i in l[0]:
+                    d[i['label']][0]=i['label']
+                    d[i['label']][1]+=int(i['quantity'])
+                    d[i['label']][2]=i['unit']
+             l3=list(d.values())
+             l2.append(l3)
+             anss=l2[0]
+             print(anss)
+             count=0
+             for user in anss:
+                if(count==0):
+                    energy+=user[1]
+                elif(count==9):
+                    protein+=user[1]
+                elif(count==10):
+                    cholestrol+=user[1]
+                elif(count==12):
+                    ca+=user[1]
+                elif(count==13):
+                    mg+=user[1]
+                elif(count==14):
+                    k+=user[1]
+                elif(count==15):
+                    iron+=user[1]
+                elif(count==16):
+                    zinc+=user[1]
+                count+=1
+        return render_template('items.html',energy=energy,protein=protein,cholestrol=cholestrol,ca=ca,mg=mg,k=k,iron=iron,zinc=zinc)
+
                
         
+
+    
 
     
 
